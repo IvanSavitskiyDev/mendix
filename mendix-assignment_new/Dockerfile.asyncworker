@@ -1,0 +1,10 @@
+FROM python:3.7-alpine
+
+WORKDIR /usr/src/apps/asyncworker
+
+COPY ./asyncworker .
+
+RUN pip install watchdog[watchmedo] -e .
+
+# watchmedo allows for celery auto reloads on code changes
+CMD watchmedo auto-restart --directory=./asyncworker --pattern=*.py --recursive -- celery -A asyncworker worker --loglevel=INFO

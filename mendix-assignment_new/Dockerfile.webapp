@@ -1,0 +1,19 @@
+FROM python:3.7-alpine
+
+RUN pip install boto3
+RUN pip install marshmallow
+
+WORKDIR /usr/src/apps/asyncworker
+COPY ./asyncworker .
+RUN pip install .
+
+WORKDIR /usr/src/apps/webapp
+COPY ./webapp .
+RUN apk add gcc g++ libffi-dev musl-dev \
+    && pip install -e . \
+    && apk del gcc g++ libffi-dev musl-dev
+
+# adev is part of the aiohttp-devtools and supports
+# hot reloading on code changes
+
+CMD ["adev", "runserver", "webapp", "--port", "6543"]

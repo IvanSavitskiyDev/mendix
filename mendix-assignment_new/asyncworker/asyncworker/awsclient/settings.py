@@ -1,0 +1,4 @@
+AWS_ACCESS_KEY = 'minio'
+AWS_SECRET_ACCESS_KEY = 'minio123'
+AWS_HOST = 'minio'
+AWS_PORT = '9000'
