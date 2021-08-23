@@ -1,9 +1,9 @@
-from marshmallow import Schema, fields, ValidationError, validates_schema
+from marshmallow import Schema, ValidationError, fields, validates_schema
 
 
 class DateRangeSerializer(Schema):
-    start_date = fields.DateTime(format='%Y-%m-%d', required=True)
-    end_date = fields.DateTime(format='%Y-%m-%d', required=True)
+    start_date = fields.DateTime(format="%Y-%m-%d", required=True)
+    end_date = fields.DateTime(format="%Y-%m-%d", required=True)
 
     @validates_schema
     def validate_numbers(self, data, **kwargs):
