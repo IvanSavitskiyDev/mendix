@@ -60,7 +60,7 @@ def merge_s3_files(result):
     # create s3 client
     s3_client = AWSClient().client()
 
-    # start collect oll lines
+    # start collect all lines
     output = []
     for file in result_files_list:
         body = s3_client.get_object(Bucket="logs", Key=file)["Body"].iter_lines()
